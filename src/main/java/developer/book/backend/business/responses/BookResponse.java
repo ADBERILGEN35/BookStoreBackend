@@ -2,6 +2,7 @@ package developer.book.backend.business.responses;
 
 import developer.book.backend.entities.concretes.Author;
 import developer.book.backend.entities.concretes.Book;
+import developer.book.backend.entities.concretes.ImageLinks;
 import lombok.*;
 
 import java.time.LocalDate;
@@ -20,7 +21,7 @@ public class BookResponse {
     private String publishedDate;
     private Integer pageCount;
     private String description;
-    private GoogleBooksApiResponse.ImageLinks thumbnailUrl;
+    private ImageLinks imageLinks;
 
     public BookResponse(Book book) {
         if (book != null) {
@@ -33,10 +34,7 @@ public class BookResponse {
             this.publishedDate = book.getPublishedDate();
             this.pageCount = book.getPageCount();
             this.description = book.getDescription();
-            if (book.getThumbnailUrl() != null) {
-                this.thumbnailUrl = new GoogleBooksApiResponse.ImageLinks();
-                this.thumbnailUrl.setThumbnail(book.getThumbnailUrl());
-            }
+            this.imageLinks = book.getImageLinks();
         }
     }
 }

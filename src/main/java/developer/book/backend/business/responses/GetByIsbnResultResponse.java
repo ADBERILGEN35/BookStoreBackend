@@ -1,5 +1,6 @@
 package developer.book.backend.business.responses;
 
+import developer.book.backend.entities.concretes.ImageLinks;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,6 +19,6 @@ public class GetByIsbnResultResponse {
     private String publishedDate;
     private Integer pageCount;
     private String description;
-    private GoogleBooksApiResponse.ImageLinks thumbnailUrl;
+    private ImageLinks imageLinks;
 
 }
