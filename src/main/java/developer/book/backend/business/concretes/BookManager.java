@@ -5,6 +5,7 @@ import developer.book.backend.business.responses.BookResponse;
 import developer.book.backend.business.responses.GetByIdResultResponse;
 import developer.book.backend.business.responses.GetByIsbnResultResponse;
 import developer.book.backend.business.responses.GoogleBooksApiResponse;
+import developer.book.backend.business.rules.BookBusinessRules;
 import developer.book.backend.core.utilies.mappers.ModelMapperService;
 import developer.book.backend.dataAccess.abstracts.AuthorRepository;
 import developer.book.backend.dataAccess.abstracts.BookRepository;
@@ -39,7 +40,7 @@ public class BookManager implements BookService {
     private final ImageLinksRepository imageLinksRepository;
     private final AuthorRepository authorRepository;
     private final RestTemplate restTemplate;
-    private final ModelMapper modelMapper;
+    private BookBusinessRules bookBusinessRules;
     private ModelMapperService modelMapperService;
 
     private static final Logger LOG = LoggerFactory.getLogger(BookManager.class);
@@ -49,6 +50,7 @@ public class BookManager implements BookService {
         int startIndex = 0;
         int maxResults = 40;
         int totalItems = Integer.MAX_VALUE;
+
 
         String baseUrl = "https://www.googleapis.com/books/v1/volumes?q=abasiyanik";
         HttpHeaders headers = new HttpHeaders();
@@ -85,6 +87,8 @@ public class BookManager implements BookService {
                 Book book = mapBook(volumeInfo);
                 books.add(book);
             }
+
+            books.forEach(bkk -> this.bookBusinessRules.checkIfBookIsbnExists(bkk.getIsbn()));
 
             if (!books.isEmpty()) {
                 bookRepository.saveAll(books);

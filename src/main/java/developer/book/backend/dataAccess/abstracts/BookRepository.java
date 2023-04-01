@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 
 public interface BookRepository extends JpaRepository<Book, Long> {
+    boolean existsByIsbn(String isbn);
 
     @Query("SELECT r FROM Book r WHERE r.isbn LIKE %:isbn%")
     List<Book> findByIsbn(String isbn);
