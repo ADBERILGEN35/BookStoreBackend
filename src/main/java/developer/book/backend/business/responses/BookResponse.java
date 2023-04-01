@@ -13,7 +13,6 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 @NoArgsConstructor
 public class BookResponse {
-    private Long id;
     private String title;
     private List<AuthorResponse> authors;
     private String isbn;
@@ -25,10 +24,9 @@ public class BookResponse {
 
     public BookResponse(Book book) {
         if (book != null) {
-            this.id = book.getId();
             this.title = book.getTitle();
             this.authors = book.getAuthors().stream()
-                    .map(author -> new AuthorResponse(author.getId(), author.getName())).collect(Collectors.toList());
+                    .map(author -> new AuthorResponse(author.getName())).collect(Collectors.toList());
             this.isbn = book.getIsbn();
             this.publisher = book.getPublisher();
             this.publishedDate = book.getPublishedDate();

@@ -11,7 +11,6 @@ import java.util.List;
 @NoArgsConstructor
 @Data
 public class GetByIdResultResponse {
-    private Long id;
     private String title;
     private List<AuthorResponse> authors;
     private String isbn;

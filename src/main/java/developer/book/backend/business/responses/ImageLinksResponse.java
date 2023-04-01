@@ -8,7 +8,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ImageLinksResponse {
-    private long id;
     private String smallThumbnail;
     private String thumbnail;
 }

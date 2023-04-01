@@ -6,7 +6,6 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 public class AuthorResponse {
-    private Long id;
     private String name;
 
 }
