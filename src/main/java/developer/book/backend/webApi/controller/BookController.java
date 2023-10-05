@@ -4,15 +4,12 @@ import developer.book.backend.business.abstracts.BookService;
 import developer.book.backend.business.responses.BookResponse;
 import developer.book.backend.business.responses.GetByIdResultResponse;
 import developer.book.backend.business.responses.GetByIsbnResultResponse;
-import developer.book.backend.entities.concretes.Book;
-import lombok.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/books")
